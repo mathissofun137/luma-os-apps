@@ -6684,3 +6684,93 @@ html {
 /* keep other bottom-right UI clear of the settings button */
 .chrome-toasts { bottom: 56px; }
 .chrome-watermark { right: 56px; bottom: 12px; }
+
+/* =====================================================================
+   Custom toolbar color (set from Settings > Appearance > Browser frame)
+   The host element gets data-chrome-surface + data-chrome-tone and the
+   --chrome-user-surface variable. Applies to the toolbar and active tab
+   so the two stay visually joined; the tab-strip frame keeps its own tone.
+   ===================================================================== */
+:host([data-chrome-surface]) :is(.chrome-toolbar, .chrome-tab-active) {
+  --chrome-surface: var(--chrome-user-surface);
+  --bg: var(--chrome-surface);
+  --bg-1: var(--chrome-surface);
+  --bg-3: var(--chrome-hover-strong);
+  --text: var(--chrome-icon);
+  --bright-text: var(--chrome-text);
+  --text-muted: var(--chrome-muted);
+  --border: var(--chrome-divider);
+  --border-2: var(--chrome-divider);
+  --border-3: var(--chrome-divider);
+  --border-4: var(--chrome-divider);
+  --bg-4: var(--chrome-divider);
+  --accent: var(--chrome-blue);
+  --accent-2: var(--chrome-blue);
+}
+:host([data-chrome-surface][data-chrome-tone="light"]) :is(.chrome-toolbar, .chrome-tab-active) {
+  --chrome-omnibox: color-mix(in srgb, var(--chrome-user-surface) 90%, #000);
+  --chrome-omnibox-hover: color-mix(in srgb, var(--chrome-user-surface) 84%, #000);
+  --chrome-hover: rgba(32, 33, 36, .08);
+  --chrome-hover-strong: rgba(32, 33, 36, .14);
+  --chrome-divider: rgba(32, 33, 36, .18);
+  --chrome-edge: rgba(32, 33, 36, .16);
+  --chrome-icon: #5f6368;
+  --chrome-text: #202124;
+  --chrome-muted: #80868b;
+  --chrome-blue: #1a73e8;
+  --bg-2: var(--chrome-omnibox);
+  color-scheme: light;
+}
+:host([data-chrome-surface][data-chrome-tone="dark"]) :is(.chrome-toolbar, .chrome-tab-active) {
+  --chrome-omnibox: color-mix(in srgb, var(--chrome-user-surface) 60%, #000);
+  --chrome-omnibox-hover: color-mix(in srgb, var(--chrome-user-surface) 72%, #000);
+  --chrome-hover: rgba(232, 234, 237, .1);
+  --chrome-hover-strong: rgba(232, 234, 237, .16);
+  --chrome-divider: rgba(232, 234, 237, .22);
+  --chrome-edge: rgba(0, 0, 0, .35);
+  --chrome-icon: #bdc1c6;
+  --chrome-text: #e8eaed;
+  --chrome-muted: #9aa0a6;
+  --chrome-blue: #8ab4f8;
+  --bg-2: var(--chrome-omnibox);
+  color-scheme: dark;
+}
+
+/* =====================================================================
+   Vertical tabs (Settings > Appearance > Browser frame > Vertical tabs)
+   ===================================================================== */
+:host([data-vtabs]) .chrome-main {
+  position: relative;
+  padding-left: 232px;
+}
+:host([data-vtabs]) .chrome-tabstrip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 232px;
+  min-height: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  padding: 8px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+:host([data-vtabs]) .chrome-tab {
+  flex: 0 0 auto;
+  height: 36px;
+  min-width: 0;
+  max-width: none;
+  border-radius: 8px;
+}
+:host([data-vtabs]) .chrome-tab-bg,
+:host([data-vtabs]) .chrome-tab-hover { border-radius: 8px; }
+:host([data-vtabs]) .chrome-tab-bg::before,
+:host([data-vtabs]) .chrome-tab-bg::after { display: none; }
+:host([data-vtabs]) .chrome-tab::after { display: none; }
+:host([data-vtabs]) .chrome-newtab {
+  align-self: flex-start;
+  margin: 4px 0 0 2px;
+}
