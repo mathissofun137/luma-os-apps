@@ -47,8 +47,11 @@ var __IMPORT_META_URL__=(document.currentScript&&document.currentScript.src)||do
     subscribe:function(f){subs.push(f);return function(){subs=subs.filter(function(x){return x!==f})}}
   };
   window.__sfHost=function(u){if(!u)return"";try{var x=new URL(u);if(x.protocol==="http:"||x.protocol==="https:")return x.hostname.replace(/^www\./,"")}catch(e){}return u};
+  function hashStyle(){var m=(location.hash||"").replace(/^#\/?/,"").split(/[&?]/)[0].toLowerCase();return m==="chrome"||m==="safari"||m==="firefox"?m:""}
+  var hs0=hashStyle();if(hs0)st.style=hs0;
+  window.addEventListener("hashchange",function(){var h=hashStyle();if(h&&h!==st.style)window.__chromeUI.set({style:h})});
   apply();
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",apply);
+  if(document.readyState=="loading")document.addEventListener("DOMContentLoaded",apply);
   setTimeout(apply,0);
   if(mq&&mq.addEventListener)mq.addEventListener("change",apply)
 })();
