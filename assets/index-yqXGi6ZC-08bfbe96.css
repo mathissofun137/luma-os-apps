@@ -6728,58 +6728,6 @@ html {
 }
 
 /* =====================================================================
-   Custom toolbar color (set from Settings > Appearance > Browser frame)
-   The host element gets data-chrome-surface + data-chrome-tone and the
-   --chrome-user-surface variable. Applies to the toolbar and active tab
-   so the two stay visually joined; the tab-strip frame keeps its own tone.
-   ===================================================================== */
-:host([data-chrome-surface]) :is(.chrome-toolbar, .chrome-tab-active) {
-  --chrome-surface: var(--chrome-user-surface);
-  --bg: var(--chrome-surface);
-  --bg-1: var(--chrome-surface);
-  --bg-3: var(--chrome-hover-strong);
-  --text: var(--chrome-icon);
-  --bright-text: var(--chrome-text);
-  --text-muted: var(--chrome-muted);
-  --border: var(--chrome-divider);
-  --border-2: var(--chrome-divider);
-  --border-3: var(--chrome-divider);
-  --border-4: var(--chrome-divider);
-  --bg-4: var(--chrome-divider);
-  --accent: var(--chrome-blue);
-  --accent-2: var(--chrome-blue);
-}
-:host([data-chrome-surface][data-chrome-tone="light"]) :is(.chrome-toolbar, .chrome-tab-active) {
-  --chrome-omnibox: color-mix(in srgb, var(--chrome-user-surface) 90%, #000);
-  --chrome-omnibox-hover: color-mix(in srgb, var(--chrome-user-surface) 84%, #000);
-  --chrome-hover: rgba(32, 33, 36, .08);
-  --chrome-hover-strong: rgba(32, 33, 36, .14);
-  --chrome-divider: rgba(32, 33, 36, .18);
-  --chrome-edge: rgba(32, 33, 36, .16);
-  --chrome-icon: #5f6368;
-  --chrome-text: #202124;
-  --chrome-muted: #80868b;
-  --chrome-blue: #1a73e8;
-  --bg-2: var(--chrome-omnibox);
-  color-scheme: light;
-}
-:host([data-chrome-surface][data-chrome-tone="dark"]) :is(.chrome-toolbar, .chrome-tab-active) {
-  --chrome-omnibox: color-mix(in srgb, var(--chrome-user-surface) 60%, #000);
-  --chrome-omnibox-hover: color-mix(in srgb, var(--chrome-user-surface) 72%, #000);
-  --chrome-hover: rgba(232, 234, 237, .1);
-  --chrome-hover-strong: rgba(232, 234, 237, .16);
-  --chrome-divider: rgba(232, 234, 237, .22);
-  --chrome-edge: rgba(0, 0, 0, .35);
-  --chrome-icon: #bdc1c6;
-  --chrome-text: #e8eaed;
-  --chrome-muted: #9aa0a6;
-  --chrome-blue: #8ab4f8;
-  --bg-2: var(--chrome-omnibox);
-  color-scheme: dark;
-}
-
-
-/* =====================================================================
    Vertical tabs (Settings > Appearance > Browser frame > Vertical tabs)
    Expanded by default; collapses to a 56px icon rail, optionally peeking
    open on hover.
@@ -6916,7 +6864,7 @@ html {
   margin: 0 6px;
   padding: 0 10px;
   gap: 8px;
-  border-radius: 8px !important; /* JS sets 17px inline */
+  --omni-radius: 8px;
 }
 :host([data-bstyle="safari"]) .chrome-omnibox.is-focused {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--chrome-blue) 35%, transparent), 0 0 0 1px var(--chrome-blue) inset;
@@ -6968,7 +6916,6 @@ html {
   background: var(--safari-tab-active, var(--chrome-surface));
   box-shadow: 0 1px 2px rgba(0, 0, 0, .16), 0 0 0 .5px rgba(0, 0, 0, .1);
 }
-:host([data-bstyle="safari"][data-chrome-surface]) .chrome-tab-bg { background: var(--chrome-surface); }
 :host([data-bstyle="safari"]) .chrome-tab-bg::before,
 :host([data-bstyle="safari"]) .chrome-tab-bg::after { display: none; }
 
@@ -6987,4 +6934,315 @@ html {
   width: 28px;
   height: 28px;
   border-radius: 7px;
+}
+
+
+/* =====================================================================
+   In-field star + host label (Safari / Firefox), hidden for Chrome
+   ===================================================================== */
+.chrome-star-in { display: none; }
+.chrome-host { display: none; }
+:host([data-bstyle="safari"]) .chrome-star-tb,
+:host([data-bstyle="firefox"]) .chrome-star-tb { display: none; }
+:host([data-bstyle="safari"]) .chrome-star-in,
+:host([data-bstyle="firefox"]) .chrome-star-in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  border-radius: 6px;
+  color: var(--chrome-icon);
+  transition: background-color .12s, color .12s;
+  z-index: 1;
+}
+:host([data-bstyle="safari"]) .chrome-star-in:hover,
+:host([data-bstyle="firefox"]) .chrome-star-in:hover { background: var(--chrome-hover); color: var(--chrome-text); }
+
+/* =====================================================================
+   Safari address bar: page-settings icon, centred host, star, loading line
+   ===================================================================== */
+:host([data-bstyle="safari"]) .chrome-omnibox::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  width: 15px;
+  height: 15px;
+  margin-top: -7.5px;
+  background: var(--chrome-icon);
+  pointer-events: none;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 7h-9'/%3E%3Cpath d='M14 17H5'/%3E%3Ccircle cx='17' cy='17' r='3'/%3E%3Ccircle cx='7' cy='7' r='3'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 7h-9'/%3E%3Cpath d='M14 17H5'/%3E%3Ccircle cx='17' cy='17' r='3'/%3E%3Ccircle cx='7' cy='7' r='3'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+:host([data-bstyle="safari"]) .chrome-omnibox.is-focused::before { display: none; }
+:host([data-bstyle="safari"]) .chrome-omnibox:not(.is-focused) > div { display: none; }
+:host([data-bstyle="safari"]) .chrome-omnibox:not(.is-focused) input {
+  color: transparent;
+  caret-color: transparent;
+}
+:host([data-bstyle="safari"]) .chrome-omnibox:not(.is-focused) .chrome-host {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 38px;
+  font-size: 13px;
+  color: var(--chrome-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+:host([data-bstyle="safari"]) .chrome-omnibox:hover:not(.is-focused) { background: var(--chrome-omnibox-hover); }
+
+/* the glowing loading line along the bottom edge */
+:host([data-bstyle="safari"]) .chrome-omnibox::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--chrome-blue) 55%, transparent) 55%, var(--chrome-blue) 92%, #fff 100%);
+  filter: drop-shadow(0 0 3px var(--chrome-blue));
+  transform-origin: left center;
+  transform: scaleX(1);
+  opacity: 0;
+  transition: opacity .35s ease .08s;
+}
+:host([data-bstyle="safari"]) .chrome-omnibox.is-loading::after {
+  opacity: 1;
+  transition: none;
+  animation: chrome-load 14s cubic-bezier(.08, .6, .2, 1) forwards;
+}
+@keyframes chrome-load {
+  from { transform: scaleX(.02); }
+  to   { transform: scaleX(.9); }
+}
+
+/* =====================================================================
+   Firefox palette
+   ===================================================================== */
+:host([data-bstyle="firefox"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #f0f0f4;
+  --chrome-surface: #f9f9fb;
+  --chrome-omnibox: #f0f0f4;
+  --chrome-omnibox-hover: #e0e0e6;
+  --chrome-hover: rgba(21, 20, 26, .07);
+  --chrome-hover-strong: rgba(21, 20, 26, .14);
+  --chrome-tab-hover: rgba(21, 20, 26, .07);
+  --chrome-divider: #cfcfd8;
+  --chrome-edge: #cfcfd8;
+  --chrome-sep: #8f8f9d;
+  --chrome-icon: #5b5b66;
+  --chrome-text: #15141a;
+  --chrome-muted: #5b5b66;
+  --chrome-blue: #0061e0;
+  --accent-glow: rgba(0, 97, 224, .3);
+  --ff-tab-active: #ffffff;
+  --ff-focus: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :host([data-bstyle="firefox"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+    --chrome-frame: #1c1b22;
+    --chrome-surface: #2b2a33;
+    --chrome-omnibox: #1c1b22;
+    --chrome-omnibox-hover: #25242c;
+    --chrome-hover: rgba(251, 251, 254, .1);
+    --chrome-hover-strong: rgba(251, 251, 254, .17);
+    --chrome-tab-hover: rgba(251, 251, 254, .1);
+    --chrome-divider: #52525e;
+    --chrome-edge: #0c0c0d;
+    --chrome-sep: #8f8f9d;
+    --chrome-icon: #fbfbfe;
+    --chrome-text: #fbfbfe;
+    --chrome-muted: #cfcfd8;
+    --chrome-blue: #00ddff;
+    --accent-glow: rgba(0, 221, 255, .3);
+    --ff-tab-active: #42414d;
+    --ff-focus: #42414d;
+  }
+}
+
+/* Firefox layout: floating rounded tabs over a lighter toolbar */
+:host([data-bstyle="firefox"]) .chrome-toolbar {
+  gap: 4px;
+  height: 42px;
+  padding: 4px 8px;
+}
+:host([data-bstyle="firefox"]) .chrome-btn { width: 32px; height: 32px; border-radius: 6px; }
+:host([data-bstyle="firefox"]) .chrome-omnibox {
+  --omni-radius: 6px;
+  height: 34px;
+  margin: 0 6px;
+  padding: 0 8px 0 12px;
+  gap: 8px;
+}
+:host([data-bstyle="firefox"]) .chrome-omnibox.is-focused {
+  background: var(--ff-focus, var(--chrome-surface));
+  box-shadow: 0 0 0 2px var(--chrome-blue);
+}
+:host([data-bstyle="firefox"]) .chrome-omnibox input { font-size: 13px; }
+
+:host([data-bstyle="firefox"]:not([data-vtabs])) .chrome-tabstrip {
+  align-items: center;
+  gap: 3px;
+  height: 42px;
+  min-height: 0;
+  padding: 5px 8px 4px;
+}
+:host([data-bstyle="firefox"]:not([data-vtabs])) .chrome-tab {
+  flex: 1 1 0;
+  height: 32px;
+  min-width: 76px;
+  max-width: 225px;
+  padding: 0 6px 0 10px;
+  border-radius: 6px;
+}
+:host([data-bstyle="firefox"]) .chrome-tab-bg,
+:host([data-bstyle="firefox"]) .chrome-tab-hover { border-radius: 6px; }
+:host([data-bstyle="firefox"]) .chrome-tab-bg {
+  background: var(--ff-tab-active);
+  box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+}
+:host([data-bstyle="firefox"]) .chrome-tab-bg::before,
+:host([data-bstyle="firefox"]) .chrome-tab-bg::after { display: none; }
+:host([data-bstyle="firefox"]) .chrome-tab::after { display: none; }
+:host([data-bstyle="firefox"]) .chrome-tab-close { border-radius: 4px; width: 20px; height: 20px; }
+:host([data-bstyle="firefox"]:not([data-vtabs])) .chrome-newtab {
+  margin: 0 0 0 2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+}
+
+/* =====================================================================
+   Address-bar shape (Settings > Appearance > Browser frame)
+   ===================================================================== */
+:host([data-shape="square"]) .chrome-omnibox { --omni-radius: 3px; }
+:host([data-shape="rounded"]) .chrome-omnibox { --omni-radius: 10px; }
+:host([data-shape="pill"]) .chrome-omnibox { --omni-radius: 999px; }
+:host([data-shape="pill"][data-bstyle="safari"]) .chrome-omnibox::after { left: 14px; right: 14px; }
+
+/* =====================================================================
+   Per-part colour overrides (Settings > Appearance > Browser colors)
+   Host attributes: data-cu-<part> + --cu-<part>, data-tone-<part>.
+   Must stay at the end of the file so it beats every style palette.
+   ===================================================================== */
+/* 1) automatic light / dark text for any region whose background was customised */
+:host([data-tone-frame="light"]) .chrome-tabstrip,
+:host([data-tone-toolbar="light"]) .chrome-toolbar,
+:host([data-tone-active="light"]) .chrome-tab-active,
+:host([data-tone-omni="light"]) .chrome-omnibox {
+  --chrome-hover: rgba(32, 33, 36, .08);
+  --chrome-hover-strong: rgba(32, 33, 36, .14);
+  --chrome-tab-hover: rgba(255, 255, 255, .5);
+  --chrome-divider: rgba(32, 33, 36, .18);
+  --chrome-edge: rgba(32, 33, 36, .16);
+  --chrome-sep: #80868b;
+  --chrome-icon: #5f6368;
+  --chrome-text: #202124;
+  --chrome-muted: #80868b;
+  --chrome-blue: #1a73e8;
+  --text: var(--chrome-icon);
+  --bright-text: var(--chrome-text);
+  --text-muted: var(--chrome-muted);
+  --border: var(--chrome-divider);
+  --border-2: var(--chrome-divider);
+  --border-3: var(--chrome-divider);
+  --border-4: var(--chrome-divider);
+  --bg-3: var(--chrome-hover-strong);
+  --bg-4: var(--chrome-divider);
+  --accent: var(--chrome-blue);
+  --accent-2: var(--chrome-blue);
+  color-scheme: light;
+}
+:host([data-tone-frame="dark"]) .chrome-tabstrip,
+:host([data-tone-toolbar="dark"]) .chrome-toolbar,
+:host([data-tone-active="dark"]) .chrome-tab-active,
+:host([data-tone-omni="dark"]) .chrome-omnibox {
+  --chrome-hover: rgba(232, 234, 237, .1);
+  --chrome-hover-strong: rgba(232, 234, 237, .16);
+  --chrome-tab-hover: rgba(255, 255, 255, .1);
+  --chrome-divider: rgba(232, 234, 237, .22);
+  --chrome-edge: rgba(0, 0, 0, .35);
+  --chrome-sep: #9aa0a6;
+  --chrome-icon: #bdc1c6;
+  --chrome-text: #e8eaed;
+  --chrome-muted: #9aa0a6;
+  --chrome-blue: #8ab4f8;
+  --text: var(--chrome-icon);
+  --bright-text: var(--chrome-text);
+  --text-muted: var(--chrome-muted);
+  --border: var(--chrome-divider);
+  --border-2: var(--chrome-divider);
+  --border-3: var(--chrome-divider);
+  --border-4: var(--chrome-divider);
+  --bg-3: var(--chrome-hover-strong);
+  --bg-4: var(--chrome-divider);
+  --accent: var(--chrome-blue);
+  --accent-2: var(--chrome-blue);
+  color-scheme: dark;
+}
+
+/* 2) the colours themselves */
+:host([data-cu-frame]) .chrome-tabstrip { --chrome-frame: var(--cu-frame); }
+:host([data-cu-toolbar]) .chrome-toolbar {
+  --chrome-surface: var(--cu-toolbar);
+  --bg: var(--cu-toolbar);
+  --bg-1: var(--cu-toolbar);
+}
+:host([data-cu-tab]) .chrome-tab-active {
+  --chrome-surface: var(--cu-tab);
+  --bg: var(--cu-tab);
+  --bg-1: var(--cu-tab);
+}
+:host([data-cu-tab]) .chrome-tab-bg { background: var(--cu-tab); }
+:host([data-cu-tab]) .chrome-tab-bg::before { background: radial-gradient(circle at 0 0, transparent 7.5px, var(--cu-tab) 8px); }
+:host([data-cu-tab]) .chrome-tab-bg::after { background: radial-gradient(circle at 100% 0, transparent 7.5px, var(--cu-tab) 8px); }
+
+/* address bar: derive from the toolbar when only the toolbar is customised */
+:host([data-tone-toolbar="light"]:not([data-cu-omni])) :is(.chrome-toolbar, .chrome-omnibox) {
+  --chrome-omnibox: color-mix(in srgb, var(--cu-toolbar) 90%, #000);
+  --chrome-omnibox-hover: color-mix(in srgb, var(--cu-toolbar) 84%, #000);
+  --ff-focus: initial;
+}
+:host([data-tone-toolbar="dark"]:not([data-cu-omni])) :is(.chrome-toolbar, .chrome-omnibox) {
+  --chrome-omnibox: color-mix(in srgb, var(--cu-toolbar) 60%, #000);
+  --chrome-omnibox-hover: color-mix(in srgb, var(--cu-toolbar) 72%, #000);
+  --ff-focus: initial;
+}
+:host([data-cu-omni]) :is(.chrome-toolbar, .chrome-omnibox) {
+  --chrome-omnibox: var(--cu-omni);
+  --ff-focus: initial;
+}
+:host([data-cu-omni]) .chrome-omnibox {
+  --bg: var(--cu-omni);
+  --bg-1: var(--cu-omni);
+}
+:host([data-cu-omni][data-tone-omni="light"]) :is(.chrome-toolbar, .chrome-omnibox) { --chrome-omnibox-hover: color-mix(in srgb, var(--cu-omni) 90%, #000); }
+:host([data-cu-omni][data-tone-omni="dark"]) :is(.chrome-toolbar, .chrome-omnibox) { --chrome-omnibox-hover: color-mix(in srgb, var(--cu-omni) 88%, #fff); }
+
+/* text & icon override */
+:host([data-cu-text]) :is(.chrome-tabstrip, .chrome-toolbar, .chrome-tab-active, .chrome-omnibox) {
+  --chrome-text: var(--cu-text);
+  --chrome-icon: var(--cu-text);
+  --chrome-muted: color-mix(in srgb, var(--cu-text) 62%, transparent);
+  --text: var(--cu-text);
+  --bright-text: var(--cu-text);
+  --text-muted: color-mix(in srgb, var(--cu-text) 62%, transparent);
+}
+
+/* accent override */
+:host([data-cu-accent]) :is(.chrome-tabstrip, .chrome-toolbar, .chrome-tab-active, .chrome-omnibox) {
+  --chrome-blue: var(--cu-accent);
+  --accent: var(--cu-accent);
+  --accent-2: var(--cu-accent);
+  --accent-glow: color-mix(in srgb, var(--cu-accent) 40%, transparent);
 }
