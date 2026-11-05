@@ -1,32 +1,25 @@
 var __IMPORT_META_URL__=(document.currentScript&&document.currentScript.src)||document.baseURI;
 
 (function(){
-  var K="raplon-chrome-ui",M="raplon-safari-default-v1",subs=[],st={vertical:!1,color:"",tabColor:"",activeColor:"",accentColor:"",style:"safari",collapsed:!1,peek:!0};
-  try{var r=JSON.parse(localStorage.getItem(K)||"null");if(r&&typeof r==="object"){st.vertical=!!r.vertical;st.color=validColor(r.color);st.tabColor=validColor(r.tabColor);st.activeColor=validColor(r.activeColor);st.accentColor=validColor(r.accentColor);st.style=r.style==="safari"||r.style==="firefox"?r.style:"chrome";st.collapsed=!!r.collapsed;st.peek=r.peek!==!1}if(localStorage.getItem(M)!=="1"){if(st.style==="chrome")st.style="safari";localStorage.setItem(K,JSON.stringify(st));localStorage.setItem(M,"1")}}catch(e){}
+  var K="raplon-chrome-ui",subs=[],st={vertical:!1,color:"",style:"chrome",collapsed:!1,peek:!0};
+  try{var r=JSON.parse(localStorage.getItem(K)||"null");if(r&&typeof r==="object"){st.vertical=!!r.vertical;st.color=/^#[0-9a-f]{6}$/i.test(r.color||"")?r.color.toLowerCase():"";st.style=r.style==="safari"?"safari":"chrome";st.collapsed=!!r.collapsed;st.peek=r.peek!==!1}}catch(e){}
   function lum(h){var n=parseInt(h.slice(1),16);function f(c){c/=255;return c<=.03928?c/12.92:Math.pow((c+.055)/1.055,2.4)}return .2126*f(n>>16&255)+.7152*f(n>>8&255)+.0722*f(n&255)}
-  function validColor(v){return /^#[0-9a-f]{6}$/i.test(v||"")?v.toLowerCase():""}
-  function setColor(h,attr,prop,toneAttr,value){if(value){h.setAttribute(attr,"");if(toneAttr)h.setAttribute(toneAttr,lum(value)>.4?"light":"dark");h.style.setProperty(prop,value)}else{h.removeAttribute(attr);if(toneAttr)h.removeAttribute(toneAttr);h.style.removeProperty(prop)}}
   function flag(h,n,on){if(on)h.setAttribute(n,"");else h.removeAttribute(n)}
   function apply(){
     var h=document.getElementById("_xi9j4u0");if(!h)return;
     flag(h,"data-vtabs",st.vertical);flag(h,"data-vcollapsed",st.collapsed);flag(h,"data-vpeek",st.peek);
     h.setAttribute("data-bstyle",st.style);
-    setColor(h,"data-chrome-surface","--chrome-user-surface","data-chrome-tone",st.color);
-    setColor(h,"data-chrome-tab-surface","--chrome-user-tab-surface","data-chrome-tab-tone",st.tabColor);
-    setColor(h,"data-chrome-active-surface","--chrome-user-active-surface","data-chrome-active-tone",st.activeColor);
-    setColor(h,"data-chrome-accent","--chrome-user-accent",null,st.accentColor)
+    if(st.color){h.setAttribute("data-chrome-surface","");h.setAttribute("data-chrome-tone",lum(st.color)>.4?"light":"dark");h.style.setProperty("--chrome-user-surface",st.color)}
+    else{h.removeAttribute("data-chrome-surface");h.removeAttribute("data-chrome-tone");h.style.removeProperty("--chrome-user-surface")}
   }
   window.__chromeUI={
-    get:function(){return{vertical:st.vertical,color:st.color,tabColor:st.tabColor,activeColor:st.activeColor,accentColor:st.accentColor,style:st.style,collapsed:st.collapsed,peek:st.peek}},
+    get:function(){return{vertical:st.vertical,color:st.color,style:st.style,collapsed:st.collapsed,peek:st.peek}},
     set:function(p){
       if("vertical"in p)st.vertical=!!p.vertical;
       if("collapsed"in p)st.collapsed=!!p.collapsed;
       if("peek"in p)st.peek=!!p.peek;
-      if("style"in p)st.style=p.style==="safari"||p.style==="firefox"?p.style:"chrome";
-      if("color"in p)st.color=validColor(p.color);
-      if("tabColor"in p)st.tabColor=validColor(p.tabColor);
-      if("activeColor"in p)st.activeColor=validColor(p.activeColor);
-      if("accentColor"in p)st.accentColor=validColor(p.accentColor);
+      if("style"in p)st.style=p.style==="safari"?"safari":"chrome";
+      if("color"in p)st.color=/^#[0-9a-f]{6}$/i.test(p.color||"")?p.color.toLowerCase():"";
       try{localStorage.setItem(K,JSON.stringify(st))}catch(e){}
       apply();var v=window.__chromeUI.get();subs.slice().forEach(function(f){f(v)})
     },
@@ -2145,18 +2138,23 @@ Several C libraries are used, and their licenses are listed below:
   var presets=["#ffffff","#e8f0fe","#d3e3fd","#ceead6","#feefc3","#fad2cf","#e9d2fd","#35363a","#202124"];
   var ring="0 0 0 2px var(--bg-2), 0 0 0 4px var(--accent)";
   var dot=function(c,sel,onClick,label){return(0,tA.jsx)("button",{type:"button",title:label||c,"aria-label":label||c,onClick:onClick,className:"w-6 h-6 rounded-full border border-(--border-2) cursor-pointer",style:{backgroundColor:c,boxShadow:sel?ring:"none"}},c)};
-  var colorControl=function(label,key){var setColor=function(value){var p={};p[key]=value;P.set(p)};return(0,tA.jsxs)("div",{className:"flex flex-col gap-2",children:[(0,tA.jsx)("span",{className:"text-xs font-medium text-(--bright-text)",children:label}),(0,tA.jsxs)("div",{className:"flex flex-wrap items-center gap-2",children:[(0,tA.jsx)("button",{type:"button",onClick:function(){setColor("")},className:"h-6 px-2 rounded-full border border-(--border-2) text-xs text-(--bright-text) cursor-pointer",style:{boxShadow:s[key]===""?ring:"none"},children:"Default"}),presets.map(function(c){return dot(c,s[key]===c,function(){setColor(c)},label+" "+c)}),(0,tA.jsx)("input",{type:"color",value:s[key]||"#ffffff",onChange:function(e){setColor(e.target.value)},className:"w-8 h-8 rounded-xl bg-transparent cursor-pointer","aria-label":"Custom "+label.toLowerCase()+" color"})]})]})};
-  var seg=function(opts,val,onPick){return(0,tA.jsx)("div",{className:"grid grid-cols-"+(opts.length>2?"3":"2")+" gap-1 rounded-xl bg-(--bg) border border-(--border-4) p-1 "+(opts.length>2?"w-64":"w-44"),children:opts.map(function(o){return(0,tA.jsx)("button",{type:"button","aria-pressed":val===o[0],onClick:function(){onPick(o[0])},className:"h-8 rounded-xl text-xs font-medium transition-colors "+(val===o[0]?"bg-(--accent) text-black":"text-(--text) hover:text-(--bright-text) hover:bg-(--bg-2)"),children:o[1]},o[0])})})};
+  var seg=function(opts,val,onPick){return(0,tA.jsx)("div",{className:"grid grid-cols-2 gap-1 rounded-xl bg-(--bg) border border-(--border-4) p-1 w-44",children:opts.map(function(o){return(0,tA.jsx)("button",{type:"button","aria-pressed":val===o[0],onClick:function(){onPick(o[0])},className:"h-8 rounded-xl text-xs font-medium transition-colors "+(val===o[0]?"bg-(--accent) text-black":"text-(--text) hover:text-(--bright-text) hover:bg-(--bg-2)"),children:o[1]},o[0])})})};
   return(0,tA.jsxs)("div",{children:[
     (0,tA.jsx)("h3",{className:"text-xs font-semibold text-(--text) mb-3",children:"Browser frame"}),
     (0,tA.jsxs)("div",{className:"rounded-xl border border-(--border-4) bg-(--bg-2) p-3 flex flex-col gap-1",children:[
-      (0,tA.jsx)(wa,{label:"Browser style",sub:"Choose how the tabs and toolbar look.",children:seg([["chrome","Chrome"],["safari","Safari"],["firefox","Firefox"]],s.style,function(v){P.set({style:v})})}),
+      (0,tA.jsx)(wa,{label:"Browser style",sub:"Choose how the tabs and toolbar look.",children:seg([["chrome","Chrome"],["safari","Safari"]],s.style,function(v){P.set({style:v})})}),
       (0,tA.jsx)(wa,{label:"Vertical tabs",sub:"Show your tabs in a column on the left instead of across the top.",children:(0,tA.jsx)(im,{value:s.vertical,onChange:function(v){P.set({vertical:!!v})}})}),
       s.vertical&&(0,tA.jsx)(wa,{label:"Collapse tabs to icons",sub:"Shrink the tab column to a slim icon rail. You can also use the button at the top of the column.",children:(0,tA.jsx)(im,{value:s.collapsed,onChange:function(v){P.set({collapsed:!!v})}})}),
       s.vertical&&(0,tA.jsx)(wa,{label:"Expand on hover",sub:"Peek at full tab titles when you hover over the collapsed rail.",children:(0,tA.jsx)(im,{value:s.peek,onChange:function(v){P.set({peek:!!v})}})}),
-      (0,tA.jsxs)("div",{className:"flex flex-col gap-3 py-3.5",children:[
-        (0,tA.jsx)("span",{className:"text-xs text-(--text)",children:"Choose separate colors for each part of the browser frame."}),
-        [["Toolbar","color"],["Tab strip","tabColor"],["Active tab","activeColor"],["Accent","accentColor"]].map(function(c){return colorControl(c[0],c[1])})
+      (0,tA.jsxs)("div",{className:"flex flex-col gap-2.5 py-3.5",children:[
+        (0,tA.jsxs)("div",{className:"flex flex-col gap-0.5",children:[
+          (0,tA.jsx)("span",{className:"text-sm font-medium text-(--bright-text)",children:"Toolbar color"}),
+          (0,tA.jsx)("span",{className:"text-xs text-(--text)",children:"Color of the address bar area and the active tab."})]}),
+        (0,tA.jsxs)("div",{className:"flex flex-wrap items-center gap-2.5",children:[
+          (0,tA.jsx)("button",{type:"button",onClick:function(){P.set({color:""})},className:"h-6 px-2 rounded-full border border-(--border-2) text-xs text-(--bright-text) cursor-pointer",style:{boxShadow:s.color===""?ring:"none"},children:"Default"}),
+          presets.map(function(c){return dot(c,s.color===c,function(){P.set({color:c})})}),
+          (0,tA.jsx)("input",{type:"color",value:s.color||"#ffffff",onChange:function(e){P.set({color:e.target.value})},className:"w-8 h-8 rounded-xl bg-transparent cursor-pointer","aria-label":"Custom toolbar color"})
+        ]})
       ]})
     ]})
   ]})
