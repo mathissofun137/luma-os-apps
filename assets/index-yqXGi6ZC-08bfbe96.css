@@ -7131,6 +7131,308 @@ html {
 :host([data-shape="pill"][data-bstyle="safari"]) .chrome-omnibox::after { left: 14px; right: 14px; }
 
 /* =====================================================================
+   Browser themes (Settings > Appearance > Browser frame > Browser theme)
+   Every style ships its own light / dark theme instead of following the OS.
+   Chrome keeps "Device" (follows the OS) as its default.
+   ===================================================================== */
+:host([data-bstyle="chrome"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #dee1e6;
+  --chrome-surface: #ffffff;
+  --chrome-omnibox: #f1f3f4;
+  --chrome-omnibox-hover: #e8eaed;
+  --chrome-hover: rgba(32,33,36,.08);
+  --chrome-hover-strong: rgba(32,33,36,.14);
+  --chrome-tab-hover: rgba(255,255,255,.55);
+  --chrome-divider: #dadce0;
+  --chrome-edge: #dadce0;
+  --chrome-sep: #80868b;
+  --chrome-icon: #5f6368;
+  --chrome-text: #202124;
+  --chrome-muted: #80868b;
+  --chrome-blue: #1a73e8;
+  --accent-glow: rgba(26,115,232,.35);
+  color-scheme: light;
+}
+:host([data-bstyle="chrome"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #202124;
+  --chrome-surface: #35363a;
+  --chrome-omnibox: #202124;
+  --chrome-omnibox-hover: #282a2d;
+  --chrome-hover: rgba(232,234,237,.1);
+  --chrome-hover-strong: rgba(232,234,237,.16);
+  --chrome-tab-hover: rgba(255,255,255,.08);
+  --chrome-divider: #5f6368;
+  --chrome-edge: #202124;
+  --chrome-sep: #9aa0a6;
+  --chrome-icon: #bdc1c6;
+  --chrome-text: #e8eaed;
+  --chrome-muted: #9aa0a6;
+  --chrome-blue: #8ab4f8;
+  --accent-glow: rgba(138,180,248,.35);
+  color-scheme: dark;
+}
+:host([data-bstyle="safari"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #e3e3e6;
+  --chrome-surface: #f6f6f7;
+  --chrome-omnibox: #e8e8ea;
+  --chrome-omnibox-hover: #e0e0e3;
+  --chrome-hover: rgba(0,0,0,.06);
+  --chrome-hover-strong: rgba(0,0,0,.11);
+  --chrome-tab-hover: rgba(0,0,0,.05);
+  --chrome-divider: #d1d1d6;
+  --chrome-edge: #d1d1d6;
+  --chrome-sep: #8e8e93;
+  --chrome-icon: #515154;
+  --chrome-text: #1d1d1f;
+  --chrome-muted: #86868b;
+  --chrome-blue: #007aff;
+  --accent-glow: rgba(0,122,255,.3);
+  color-scheme: light;
+  --safari-tab-active: #ffffff;
+}
+:host([data-bstyle="safari"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #1c1c1e;
+  --chrome-surface: #2c2c2e;
+  --chrome-omnibox: #3a3a3c;
+  --chrome-omnibox-hover: #444446;
+  --chrome-hover: rgba(255,255,255,.08);
+  --chrome-hover-strong: rgba(255,255,255,.14);
+  --chrome-tab-hover: rgba(255,255,255,.06);
+  --chrome-divider: #48484a;
+  --chrome-edge: #0b0b0c;
+  --chrome-sep: #98989d;
+  --chrome-icon: #aeaeb2;
+  --chrome-text: #f5f5f7;
+  --chrome-muted: #98989d;
+  --chrome-blue: #0a84ff;
+  --accent-glow: rgba(10,132,255,.3);
+  color-scheme: dark;
+  --safari-tab-active: #3a3a3c;
+}
+:host([data-bstyle="firefox"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #f0f0f4;
+  --chrome-surface: #f9f9fb;
+  --chrome-omnibox: #f0f0f4;
+  --chrome-omnibox-hover: #e0e0e6;
+  --chrome-hover: rgba(21,20,26,.07);
+  --chrome-hover-strong: rgba(21,20,26,.14);
+  --chrome-tab-hover: rgba(21,20,26,.07);
+  --chrome-divider: #cfcfd8;
+  --chrome-edge: #cfcfd8;
+  --chrome-sep: #8f8f9d;
+  --chrome-icon: #5b5b66;
+  --chrome-text: #15141a;
+  --chrome-muted: #5b5b66;
+  --chrome-blue: #0061e0;
+  --accent-glow: rgba(0,97,224,.3);
+  color-scheme: light;
+  --ff-tab-active: #ffffff;
+  --ff-focus: #ffffff;
+}
+:host([data-bstyle="firefox"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #1c1b22;
+  --chrome-surface: #2b2a33;
+  --chrome-omnibox: #1c1b22;
+  --chrome-omnibox-hover: #25242c;
+  --chrome-hover: rgba(251,251,254,.1);
+  --chrome-hover-strong: rgba(251,251,254,.17);
+  --chrome-tab-hover: rgba(251,251,254,.1);
+  --chrome-divider: #52525e;
+  --chrome-edge: #0c0c0d;
+  --chrome-sep: #8f8f9d;
+  --chrome-icon: #fbfbfe;
+  --chrome-text: #fbfbfe;
+  --chrome-muted: #cfcfd8;
+  --chrome-blue: #00ddff;
+  --accent-glow: rgba(0,221,255,.3);
+  color-scheme: dark;
+  --ff-tab-active: #42414d;
+  --ff-focus: #42414d;
+}
+:host([data-bstyle="firefox"][data-btheme="alpenglow"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #3a2a73;
+  --chrome-surface: #34235f;
+  --chrome-omnibox: #251848;
+  --chrome-omnibox-hover: #2e2058;
+  --chrome-hover: rgba(251,251,254,.12);
+  --chrome-hover-strong: rgba(251,251,254,.2);
+  --chrome-tab-hover: rgba(251,251,254,.14);
+  --chrome-divider: rgba(251,251,254,.22);
+  --chrome-edge: rgba(12,6,32,.55);
+  --chrome-sep: #c9b8ff;
+  --chrome-icon: #fbfbfe;
+  --chrome-text: #fbfbfe;
+  --chrome-muted: #d9ccff;
+  --chrome-blue: #ff9ad5;
+  --accent-glow: rgba(255,154,213,.35);
+  color-scheme: dark;
+  --ff-tab-active: #4c3787;
+  --ff-focus: #3f2c78;
+}
+:host([data-bstyle="brave"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #e6e9ed;
+  --chrome-surface: #ffffff;
+  --chrome-omnibox: #f0f2f5;
+  --chrome-omnibox-hover: #e6e9ee;
+  --chrome-hover: rgba(24,27,33,.07);
+  --chrome-hover-strong: rgba(24,27,33,.13);
+  --chrome-tab-hover: rgba(255,255,255,.6);
+  --chrome-divider: #d9dde3;
+  --chrome-edge: #d9dde3;
+  --chrome-sep: #7b8089;
+  --chrome-icon: #555a63;
+  --chrome-text: #1b1d22;
+  --chrome-muted: #7b8089;
+  --chrome-blue: #fb542b;
+  --accent-glow: rgba(251,84,43,.3);
+  color-scheme: light;
+  --brave-tab-active: #ffffff;
+}
+:host([data-bstyle="brave"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: #17181b;
+  --chrome-surface: #2a2c31;
+  --chrome-omnibox: #17181b;
+  --chrome-omnibox-hover: #202226;
+  --chrome-hover: rgba(240,242,245,.09);
+  --chrome-hover-strong: rgba(240,242,245,.15);
+  --chrome-tab-hover: rgba(255,255,255,.07);
+  --chrome-divider: #41444b;
+  --chrome-edge: #101113;
+  --chrome-sep: #8d919a;
+  --chrome-icon: #c5c8ce;
+  --chrome-text: #f2f3f5;
+  --chrome-muted: #9a9ea7;
+  --chrome-blue: #ff6a3d;
+  --accent-glow: rgba(255,106,61,.32);
+  color-scheme: dark;
+  --brave-tab-active: #2a2c31;
+}
+
+/* Firefox Alpenglow: purple-to-orange frame */
+:host([data-bstyle="firefox"][data-btheme="alpenglow"]:not([data-cu-frame])) .chrome-tabstrip {
+  background: linear-gradient(100deg, #34236b 0%, #6b3a9e 38%, #c4479a 72%, #ff8a4c 100%);
+}
+:host([data-bstyle="firefox"][data-btheme="alpenglow"]:not([data-cu-toolbar])) .chrome-toolbar {
+  background: linear-gradient(100deg, #34235f 0%, #4a2c78 60%, #5a2f74 100%);
+}
+
+/* Original (Raplon) theme: the browser style keeps its layout, colours come from the app theme */
+:host([data-btheme="original"]) {
+  /* capture the app's own theme on the host, before the bars re-point these names */
+  --o-text: var(--bright-text, #fff);
+  --o-icon: var(--text, #bbb);
+  --o-muted: var(--text-muted, #888);
+  --o-accent: var(--accent, #ff6b8b);
+}
+:host([data-btheme="original"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  --chrome-frame: var(--bg-base, #0b0b0d);
+  --chrome-surface: var(--bg-1-base, #141418);
+  --chrome-omnibox: var(--bg-2-base, #1c1c22);
+  --chrome-omnibox-hover: var(--bg-3-base, #26262e);
+  --chrome-hover: color-mix(in srgb, var(--o-text) 9%, transparent);
+  --chrome-hover-strong: color-mix(in srgb, var(--o-text) 16%, transparent);
+  --chrome-tab-hover: color-mix(in srgb, var(--o-text) 9%, transparent);
+  --chrome-divider: color-mix(in srgb, var(--o-text) 16%, transparent);
+  --chrome-edge: color-mix(in srgb, var(--o-text) 12%, transparent);
+  --chrome-sep: var(--o-muted);
+  --chrome-icon: var(--o-icon);
+  --chrome-text: var(--o-text);
+  --chrome-muted: var(--o-muted);
+  --chrome-blue: var(--o-accent);
+  --accent-glow: color-mix(in srgb, var(--o-accent) 40%, transparent);
+  --safari-tab-active: var(--bg-3-base, #26262e);
+  --brave-tab-active: var(--bg-3-base, #26262e);
+  --ff-tab-active: var(--bg-3-base, #26262e);
+  --ff-focus: var(--bg-1-base, #141418);
+  color-scheme: dark;
+}
+:host([data-btheme="original"][data-otone="light"]) :is(.chrome-tabstrip, .chrome-toolbar) { color-scheme: light; }
+
+/* =====================================================================
+   Brave: Chromium "refresh" frame (rounded, unflared tabs, pill address bar)
+   with the Shields badge inside the address bar
+   ===================================================================== */
+.chrome-shield { display: none; }
+:host([data-bstyle="brave"]) .chrome-star-tb { display: none; }
+:host([data-bstyle="brave"]) .chrome-star-in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  margin-left: auto;
+  border-radius: 50%;
+  color: var(--chrome-icon);
+  transition: background-color .12s, color .12s;
+  z-index: 1;
+}
+:host([data-bstyle="brave"]) .chrome-star-in:hover { background: var(--chrome-hover); color: var(--chrome-text); }
+:host([data-bstyle="brave"]) .chrome-shield {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--chrome-blue);
+  z-index: 1;
+}
+:host([data-bstyle="brave"]) .chrome-shield svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+:host([data-bstyle="brave"]) .chrome-toolbar {
+  gap: 4px;
+  height: 46px;
+  padding: 5px 10px;
+}
+:host([data-bstyle="brave"]) .chrome-omnibox {
+  --omni-radius: 18px;
+  height: 36px;
+  margin: 0 6px;
+  padding: 0 8px 0 16px;
+  gap: 8px;
+}
+:host([data-bstyle="brave"]) .chrome-omnibox.is-focused {
+  background: var(--chrome-surface);
+  box-shadow: 0 0 0 2px var(--chrome-blue) inset;
+}
+:host([data-bstyle="brave"]) .chrome-omnibox input { font-size: 14px; }
+:host([data-bstyle="brave"]:not([data-vtabs])) .chrome-tabstrip {
+  align-items: center;
+  gap: 2px;
+  height: 46px;
+  min-height: 0;
+  padding: 6px 10px 5px;
+}
+:host([data-bstyle="brave"]:not([data-vtabs])) .chrome-tab {
+  height: 34px;
+  padding: 0 8px 0 12px;
+  border-radius: 10px;
+}
+:host([data-bstyle="brave"]) .chrome-tab-bg,
+:host([data-bstyle="brave"]) .chrome-tab-hover { border-radius: 10px; }
+:host([data-bstyle="brave"]) .chrome-tab-bg {
+  background: var(--brave-tab-active, var(--chrome-surface));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .14);
+}
+:host([data-bstyle="brave"]) .chrome-tab-bg::before,
+:host([data-bstyle="brave"]) .chrome-tab-bg::after { display: none; }
+:host([data-bstyle="brave"]:not([data-vtabs])) .chrome-newtab {
+  margin: 0 0 0 4px;
+  width: 30px;
+  height: 30px;
+}
+
+
+/* =====================================================================
    Per-part colour overrides (Settings > Appearance > Browser colors)
    Host attributes: data-cu-<part> + --cu-<part>, data-tone-<part>.
    Must stay at the end of the file so it beats every style palette.
