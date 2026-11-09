@@ -6459,7 +6459,8 @@ html {
    Colours are scoped to the two bars, so the rest of the app keeps its theme.
    ===================================================================== */
 .chrome-tabstrip,
-.chrome-toolbar {
+.chrome-toolbar,
+.rs-page {
   --chrome-frame: #dee1e6;
   --chrome-surface: #ffffff;
   --chrome-omnibox: #f1f3f4;
@@ -6498,7 +6499,8 @@ html {
 
 @media (prefers-color-scheme: dark) {
   .chrome-tabstrip,
-  .chrome-toolbar {
+  .chrome-toolbar,
+  .rs-page {
     --chrome-frame: #202124;
     --chrome-surface: #35363a;
     --chrome-omnibox: #202124;
@@ -6688,7 +6690,7 @@ html {
 /* =====================================================================
    Safari palette (Settings > Appearance > Browser frame > Browser style)
    ===================================================================== */
-:host([data-bstyle="safari"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="safari"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #e3e3e6;
   --chrome-surface: #f6f6f7;
   --chrome-omnibox: #e8e8ea;
@@ -6707,7 +6709,7 @@ html {
   --safari-tab-active: #ffffff;
 }
 @media (prefers-color-scheme: dark) {
-  :host([data-bstyle="safari"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  :host([data-bstyle="safari"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
     --chrome-frame: #1c1c1e;
     --chrome-surface: #2c2c2e;
     --chrome-omnibox: #3a3a3c;
@@ -7029,7 +7031,7 @@ html {
 /* =====================================================================
    Firefox palette
    ===================================================================== */
-:host([data-bstyle="firefox"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="firefox"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #f0f0f4;
   --chrome-surface: #f9f9fb;
   --chrome-omnibox: #f0f0f4;
@@ -7049,7 +7051,7 @@ html {
   --ff-focus: #ffffff;
 }
 @media (prefers-color-scheme: dark) {
-  :host([data-bstyle="firefox"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+  :host([data-bstyle="firefox"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
     --chrome-frame: #1c1b22;
     --chrome-surface: #2b2a33;
     --chrome-omnibox: #1c1b22;
@@ -7135,7 +7137,7 @@ html {
    Every style ships its own light / dark theme instead of following the OS.
    Chrome keeps "Device" (follows the OS) as its default.
    ===================================================================== */
-:host([data-bstyle="chrome"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="chrome"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #dee1e6;
   --chrome-surface: #ffffff;
   --chrome-omnibox: #f1f3f4;
@@ -7153,7 +7155,7 @@ html {
   --accent-glow: rgba(26,115,232,.35);
   color-scheme: light;
 }
-:host([data-bstyle="chrome"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="chrome"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #202124;
   --chrome-surface: #35363a;
   --chrome-omnibox: #202124;
@@ -7171,7 +7173,7 @@ html {
   --accent-glow: rgba(138,180,248,.35);
   color-scheme: dark;
 }
-:host([data-bstyle="safari"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="safari"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #e3e3e6;
   --chrome-surface: #f6f6f7;
   --chrome-omnibox: #e8e8ea;
@@ -7190,7 +7192,7 @@ html {
   color-scheme: light;
   --safari-tab-active: #ffffff;
 }
-:host([data-bstyle="safari"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="safari"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #1c1c1e;
   --chrome-surface: #2c2c2e;
   --chrome-omnibox: #3a3a3c;
@@ -7209,7 +7211,7 @@ html {
   color-scheme: dark;
   --safari-tab-active: #3a3a3c;
 }
-:host([data-bstyle="firefox"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="firefox"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #f0f0f4;
   --chrome-surface: #f9f9fb;
   --chrome-omnibox: #f0f0f4;
@@ -7229,7 +7231,7 @@ html {
   --ff-tab-active: #ffffff;
   --ff-focus: #ffffff;
 }
-:host([data-bstyle="firefox"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="firefox"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #1c1b22;
   --chrome-surface: #2b2a33;
   --chrome-omnibox: #1c1b22;
@@ -7249,7 +7251,7 @@ html {
   --ff-tab-active: #42414d;
   --ff-focus: #42414d;
 }
-:host([data-bstyle="firefox"][data-btheme="alpenglow"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="firefox"][data-btheme="alpenglow"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #3a2a73;
   --chrome-surface: #34235f;
   --chrome-omnibox: #251848;
@@ -7269,7 +7271,7 @@ html {
   --ff-tab-active: #4c3787;
   --ff-focus: #3f2c78;
 }
-:host([data-bstyle="brave"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="brave"][data-btheme="light"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #e6e9ed;
   --chrome-surface: #ffffff;
   --chrome-omnibox: #f0f2f5;
@@ -7288,7 +7290,7 @@ html {
   color-scheme: light;
   --brave-tab-active: #ffffff;
 }
-:host([data-bstyle="brave"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-bstyle="brave"][data-btheme="dark"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: #17181b;
   --chrome-surface: #2a2c31;
   --chrome-omnibox: #17181b;
@@ -7324,7 +7326,7 @@ html {
   --o-muted: var(--text-muted, #888);
   --o-accent: var(--accent, #ff6b8b);
 }
-:host([data-btheme="original"]) :is(.chrome-tabstrip, .chrome-toolbar) {
+:host([data-btheme="original"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) {
   --chrome-frame: var(--bg-base, #0b0b0d);
   --chrome-surface: var(--bg-1-base, #141418);
   --chrome-omnibox: var(--bg-2-base, #1c1c22);
@@ -7346,7 +7348,7 @@ html {
   --ff-focus: var(--bg-1-base, #141418);
   color-scheme: dark;
 }
-:host([data-btheme="original"][data-otone="light"]) :is(.chrome-tabstrip, .chrome-toolbar) { color-scheme: light; }
+:host([data-btheme="original"][data-otone="light"]) :is(.chrome-tabstrip, .chrome-toolbar, .rs-page) { color-scheme: light; }
 
 /* =====================================================================
    Brave: Chromium "refresh" frame (rounded, unflared tabs, pill address bar)
@@ -7431,6 +7433,154 @@ html {
   height: 30px;
 }
 
+
+/* =====================================================================
+   raplon://settings  -  a full settings page that wears the look of the
+   browser style you are on (Chrome / Safari / Firefox / Brave).
+   Colours come from the same --chrome-* palette as the tab bar and toolbar,
+   so it follows the browser theme (Light, Dark, Alpenglow, Original...).
+   ===================================================================== */
+.rs-page {
+  --rs-on-accent: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--rs-bg, var(--chrome-surface));
+  color: var(--chrome-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+@supports (color: oklch(from red l c h)) {
+  .rs-page { --rs-on-accent: oklch(from var(--chrome-blue) clamp(0, calc((0.68 - l) * 1000), 1) 0 0); }
+}
+.rs-page *, .rs-page *::before, .rs-page *::after { box-sizing: border-box; }
+.rs-page button { cursor: pointer; font: inherit; color: inherit; }
+.rs-page [class~="bg-(--accent)"] { color: var(--rs-on-accent) !important; }
+
+/* ----- shared structure ----- */
+.rs-top { flex: none; display: flex; align-items: center; gap: 16px; }
+.rs-brand { display: flex; align-items: center; gap: 10px; font-weight: 500; }
+.rs-brand-ic { display: none; align-items: center; justify-content: center; }
+.rs-search { position: relative; display: flex; align-items: center; flex: 1; }
+.rs-search input {
+  width: 100%; height: 100%; border: 0; outline: 0; background: transparent; color: inherit; font: inherit;
+  padding: 0 14px 0 42px; border-radius: inherit;
+}
+.rs-search input::placeholder { color: var(--chrome-muted); }
+.rs-search input::-webkit-search-cancel-button { filter: grayscale(1); cursor: pointer; }
+.rs-search-ic { position: absolute; left: 14px; top: 50%; margin-top: -7.5px; color: var(--chrome-icon); display: flex; pointer-events: none; }
+.rs-body { flex: 1; display: flex; min-height: 0; }
+.rs-nav { flex: none; overflow-y: auto; display: flex; flex-direction: column; scrollbar-width: thin; }
+.rs-nav-item { display: flex; align-items: center; border: 0; background: transparent; text-align: left; color: var(--chrome-icon); transition: background-color .12s, color .12s; }
+.rs-nav-item:hover { background: var(--chrome-hover); color: var(--chrome-text); }
+.rs-nav-item.is-active { color: var(--chrome-blue); }
+.rs-nav-ic { display: flex; flex: none; align-items: center; justify-content: center; }
+.rs-nav-foot { margin-top: auto; padding: 14px 16px; font-size: 11px; color: var(--chrome-muted); }
+.rs-main { flex: 1; min-width: 0; overflow-y: auto; scrollbar-width: thin; }
+.rs-main-in { width: 100%; margin: 0 auto; }
+.rs-h1 { margin: 0; font-weight: 500; }
+.rs-sub { margin: 2px 0 16px; color: var(--chrome-muted); font-size: 13px; }
+.rs-card { background: var(--rs-card, var(--chrome-surface)); border: 1px solid var(--rs-line, var(--chrome-divider)); }
+.rs-card > div { min-width: 0; }
+.rs-main h3 { margin: 4px 0 8px; font-size: 12px; font-weight: 600; letter-spacing: .03em; color: var(--chrome-muted); text-transform: uppercase; }
+.rs-card [class*="bg-(--bg-2) p-3 flex flex-col gap-1"] { background: transparent; border-color: transparent; padding: 0; }
+.rs-card input[type="text"], .rs-card input[type="search"], .rs-card input[type="url"], .rs-card input[type="password"], .rs-card select, .rs-card textarea { color: var(--chrome-text); }
+.rs-results { padding: 6px; display: flex; flex-direction: column; }
+.rs-result { display: flex; align-items: center; gap: 14px; padding: 10px 12px; border: 0; border-radius: 8px; background: transparent; text-align: left; }
+.rs-result:hover { background: var(--chrome-hover); }
+.rs-result-t { display: flex; flex-direction: column; }
+.rs-result-t small { color: var(--chrome-muted); font-size: 12px; }
+.rs-result .rs-nav-ic { color: var(--chrome-blue); }
+@keyframes rs-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.rs-main-in > * { animation: rs-in .18s ease-out both; }
+
+/* ----- Chrome: chrome://settings ----- */
+:host([data-bstyle="chrome"]) .rs-page { --rs-bg: var(--chrome-omnibox); --rs-card: var(--chrome-surface); font-family: "Google Sans Text", Roboto, system-ui, sans-serif; }
+:host([data-bstyle="chrome"]) .rs-top { height: 64px; padding: 0 24px; background: var(--chrome-surface); border-bottom: 1px solid var(--chrome-divider); }
+:host([data-bstyle="chrome"]) .rs-brand { width: 232px; font-size: 22px; font-weight: 400; }
+:host([data-bstyle="chrome"]) .rs-search { max-width: 680px; height: 44px; margin: 0 auto; border-radius: 24px; background: var(--chrome-omnibox); }
+:host([data-bstyle="chrome"]) .rs-search:focus-within { background: var(--chrome-surface); box-shadow: 0 0 0 2px var(--chrome-blue) inset; }
+:host([data-bstyle="chrome"]) .rs-nav { width: 256px; padding: 12px 8px 12px 0; background: var(--chrome-surface); }
+:host([data-bstyle="chrome"]) .rs-nav-item { gap: 18px; width: 100%; height: 40px; padding: 0 24px; border-radius: 0 20px 20px 0; font-size: 14px; }
+:host([data-bstyle="chrome"]) .rs-nav-item.is-active { background: color-mix(in srgb, var(--chrome-blue) 16%, transparent); font-weight: 500; }
+:host([data-bstyle="chrome"]) .rs-main { padding: 28px 32px 56px; }
+:host([data-bstyle="chrome"]) .rs-main-in { max-width: 680px; }
+:host([data-bstyle="chrome"]) .rs-h1 { font-size: 22px; font-weight: 400; }
+:host([data-bstyle="chrome"]) .rs-card { border-radius: 12px; padding: 6px 20px 12px; }
+:host([data-bstyle="chrome"]) .rs-main h3 { text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--chrome-text); margin-top: 12px; }
+
+/* ----- Firefox: about:preferences ----- */
+:host([data-bstyle="firefox"]) .rs-page { --rs-bg: var(--chrome-surface); --rs-card: color-mix(in srgb, var(--chrome-omnibox) 45%, var(--chrome-surface)); font-family: system-ui, "Segoe UI", sans-serif; }
+:host([data-bstyle="firefox"]) .rs-top { padding: 14px 32px 10px 24px; justify-content: space-between; }
+:host([data-bstyle="firefox"]) .rs-brand { font-size: 20px; font-weight: 600; width: 216px; }
+:host([data-bstyle="firefox"]) .rs-brand-ic { display: flex; color: var(--chrome-blue); }
+:host([data-bstyle="firefox"]) .rs-search { flex: none; width: 320px; height: 36px; border-radius: 4px; background: var(--chrome-omnibox); border: 1px solid var(--chrome-divider); }
+:host([data-bstyle="firefox"]) .rs-search:focus-within { box-shadow: 0 0 0 2px var(--chrome-blue); border-color: transparent; }
+:host([data-bstyle="firefox"]) .rs-search input { padding-left: 38px; font-size: 13px; }
+:host([data-bstyle="firefox"]) .rs-nav { width: 240px; padding: 8px 12px; }
+:host([data-bstyle="firefox"]) .rs-nav-item { gap: 12px; width: 100%; height: 38px; padding: 0 12px; border-radius: 4px; font-size: 14px; }
+:host([data-bstyle="firefox"]) .rs-nav-item.is-active { background: var(--chrome-hover-strong); color: var(--chrome-text); font-weight: 600; box-shadow: inset 3px 0 0 var(--chrome-blue); }
+:host([data-bstyle="firefox"]) .rs-nav-item.is-active .rs-nav-ic { color: var(--chrome-blue); }
+:host([data-bstyle="firefox"]) .rs-main { padding: 12px 32px 56px 24px; }
+:host([data-bstyle="firefox"]) .rs-main-in { max-width: 664px; margin: 0; }
+:host([data-bstyle="firefox"]) .rs-h1 { font-size: 28px; font-weight: 600; letter-spacing: -.01em; }
+:host([data-bstyle="firefox"]) .rs-sub { margin-bottom: 18px; }
+:host([data-bstyle="firefox"]) .rs-card { border-radius: 8px; padding: 6px 18px 14px; }
+:host([data-bstyle="firefox"]) .rs-main h3 { font-size: 15px; text-transform: none; letter-spacing: 0; color: var(--chrome-text); font-weight: 600; margin-top: 12px; }
+
+/* ----- Safari: Settings window with an icon toolbar ----- */
+:host([data-bstyle="safari"]) .rs-page { --rs-bg: var(--chrome-frame); --rs-card: var(--chrome-surface); font-family: -apple-system, "SF Pro Text", system-ui, sans-serif; }
+:host([data-bstyle="safari"]) .rs-top { height: 46px; padding: 0 16px; justify-content: space-between; background: var(--chrome-surface); }
+:host([data-bstyle="safari"]) .rs-brand { font-size: 13px; font-weight: 600; width: 200px; }
+:host([data-bstyle="safari"]) .rs-search { flex: none; width: 240px; height: 28px; border-radius: 8px; background: var(--chrome-omnibox); }
+:host([data-bstyle="safari"]) .rs-search input { padding-left: 32px; font-size: 13px; }
+:host([data-bstyle="safari"]) .rs-search-ic { left: 10px; }
+:host([data-bstyle="safari"]) .rs-body { flex-direction: column; }
+:host([data-bstyle="safari"]) .rs-nav { flex-direction: row; flex-wrap: nowrap; justify-content: center; gap: 2px; padding: 4px 12px 6px; overflow-x: auto; overflow-y: hidden; background: var(--chrome-surface); border-bottom: 1px solid var(--chrome-edge); }
+:host([data-bstyle="safari"]) .rs-nav-item { flex-direction: column; justify-content: center; gap: 3px; flex: none; min-width: 74px; padding: 7px 10px 5px; border-radius: 8px; font-size: 11px; }
+:host([data-bstyle="safari"]) .rs-nav-ic svg { width: 22px; height: 22px; }
+:host([data-bstyle="safari"]) .rs-nav-item.is-active { background: var(--chrome-hover-strong); }
+:host([data-bstyle="safari"]) .rs-nav-foot { display: none; }
+:host([data-bstyle="safari"]) .rs-main { padding: 26px 24px 56px; }
+:host([data-bstyle="safari"]) .rs-main-in { max-width: 600px; }
+:host([data-bstyle="safari"]) .rs-h1 { font-size: 20px; font-weight: 600; text-align: center; }
+:host([data-bstyle="safari"]) .rs-sub { text-align: center; margin-bottom: 18px; }
+:host([data-bstyle="safari"]) .rs-card { border-radius: 10px; border-width: .5px; padding: 4px 16px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+:host([data-bstyle="safari"]) .rs-main h3 { font-size: 11px; letter-spacing: .02em; }
+
+/* ----- Brave: brave://settings ----- */
+:host([data-bstyle="brave"]) .rs-page { --rs-bg: var(--chrome-frame); --rs-card: var(--chrome-surface); font-family: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif; }
+:host([data-bstyle="brave"]) .rs-top { height: 68px; padding: 0 24px; background: var(--chrome-surface); border-bottom: 1px solid var(--chrome-divider); position: relative; }
+:host([data-bstyle="brave"]) .rs-top::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: linear-gradient(90deg, #fb542b, #ff1893 55%, #a0a5ff); opacity: .85; }
+:host([data-bstyle="brave"]) .rs-brand { width: 224px; font-size: 18px; font-weight: 600; }
+:host([data-bstyle="brave"]) .rs-brand-ic { display: flex; width: 34px; height: 34px; border-radius: 10px; color: #fff; background: linear-gradient(135deg, #fb542b, #ff1893); }
+:host([data-bstyle="brave"]) .rs-search { max-width: 640px; height: 42px; margin: 0 auto; border-radius: 12px; background: var(--chrome-omnibox); }
+:host([data-bstyle="brave"]) .rs-search:focus-within { box-shadow: 0 0 0 2px var(--chrome-blue) inset; background: var(--chrome-surface); }
+:host([data-bstyle="brave"]) .rs-nav { width: 248px; padding: 14px 12px; gap: 2px; }
+:host([data-bstyle="brave"]) .rs-nav-item { position: relative; gap: 14px; width: 100%; height: 44px; padding: 0 14px; border-radius: 12px; font-size: 14px; }
+:host([data-bstyle="brave"]) .rs-nav-item.is-active { background: color-mix(in srgb, var(--chrome-blue) 15%, transparent); font-weight: 600; }
+:host([data-bstyle="brave"]) .rs-nav-item.is-active::before { content: ""; position: absolute; left: -12px; top: 10px; bottom: 10px; width: 4px; border-radius: 0 4px 4px 0; background: var(--chrome-blue); }
+:host([data-bstyle="brave"]) .rs-main { padding: 28px 32px 56px; }
+:host([data-bstyle="brave"]) .rs-main-in { max-width: 720px; }
+:host([data-bstyle="brave"]) .rs-h1 { font-size: 24px; font-weight: 600; }
+:host([data-bstyle="brave"]) .rs-card { border-radius: 16px; padding: 8px 22px 14px; box-shadow: 0 1px 4px rgba(0, 0, 0, .1); border-color: color-mix(in srgb, var(--chrome-divider) 70%, transparent); }
+
+/* ----- narrow windows: sections become a scrolling row ----- */
+@media (max-width: 820px) {
+  :host(:not([data-bstyle="safari"])) .rs-body { flex-direction: column; }
+  :host(:not([data-bstyle="safari"])) .rs-nav { width: auto; flex-direction: row; overflow-x: auto; overflow-y: hidden; padding: 6px 10px; gap: 4px; }
+  :host(:not([data-bstyle="safari"])) .rs-nav-item { width: auto; flex: none; padding: 0 14px; height: 36px; border-radius: 18px; }
+  :host(:not([data-bstyle="safari"])) .rs-nav-foot { display: none; }
+  :host([data-bstyle="brave"]) .rs-nav-item.is-active::before { display: none; }
+  .rs-brand { width: auto !important; }
+  .rs-top { gap: 10px; }
+  :host([data-bstyle="firefox"]) .rs-search, :host([data-bstyle="safari"]) .rs-search { width: 200px; }
+  .rs-main { padding-left: 16px !important; padding-right: 16px !important; }
+}
 
 /* =====================================================================
    Per-part colour overrides (Settings > Appearance > Browser colors)
@@ -7542,7 +7692,7 @@ html {
 }
 
 /* accent override */
-:host([data-cu-accent]) :is(.chrome-tabstrip, .chrome-toolbar, .chrome-tab-active, .chrome-omnibox) {
+:host([data-cu-accent]) :is(.chrome-tabstrip, .chrome-toolbar, .chrome-tab-active, .chrome-omnibox, .rs-page) {
   --chrome-blue: var(--cu-accent);
   --accent: var(--cu-accent);
   --accent-2: var(--cu-accent);
