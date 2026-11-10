@@ -6072,21 +6072,21 @@
 }
 :root,
 [data-theme=raplon] {
-  --bg-base:#0d0e0c;
-  --bg-1-base:#121311;
-  --bg-2-base:#181a17;
-  --bg-3-base:#1f211d;
-  --bg-4-base:#282b26;
-  --accent:#c8f060;
-  --accent-2:#8fb82f;
-  --accent-glow:#c8f06055;
-  --text:#d9d6cb;
-  --text-muted:#8b8a80;
-  --bright-text:#f4f1e8;
-  --border:#f4f1e82e;
-  --border-2:#f4f1e81f;
-  --border-3:#f4f1e814;
-  --border-4:#f4f1e80d;
+  --bg-base:#050408;
+  --bg-1-base:#0a0810;
+  --bg-2-base:#100d1a;
+  --bg-3-base:#171326;
+  --bg-4-base:#20193a;
+  --accent:#a78bfa;
+  --accent-2:#7c5cdb;
+  --accent-glow:#a78bfa66;
+  --text:#d8d3e6;
+  --text-muted:#8b83a3;
+  --bright-text:#f3f0fb;
+  --border:#c4b5fd2e;
+  --border-2:#c4b5fd1f;
+  --border-3:#c4b5fd14;
+  --border-4:#c4b5fd0d;
 }
 [data-theme=midnight] {
   --bg-base:#04060f;
@@ -7784,3 +7784,13 @@ h1,h2{font-family:var(--rh-display);font-weight:400;letter-spacing:-.012em}
 .rl-head h1{font-size:60px!important;line-height:.95!important;letter-spacing:-.03em!important}
 .rl-head p{margin-top:14px!important;font-size:14px!important}
 .asst-start-title{font-family:var(--rh-display)!important;font-weight:400!important;font-size:clamp(44px,6vw,72px)!important;line-height:.98!important;letter-spacing:-.03em!important;text-align:left!important;color:var(--bright-text)!important}
+
+
+/* ===== Animated gradient backdrop ===== */
+.rh-root{isolation:isolate;background:var(--bg-base)}
+.rh-root::before,.rh-root::after{content:"";position:fixed;inset:-25%;z-index:-1;pointer-events:none;will-change:transform}
+.rh-root::before{background:radial-gradient(38% 38% at 24% 30%,#7c3aed70,transparent 70%),radial-gradient(34% 42% at 76% 24%,#a855f75c,transparent 70%),radial-gradient(44% 38% at 58% 82%,#4c1d9580,transparent 70%);filter:blur(46px);animation:rh-drift 24s ease-in-out infinite alternate}
+.rh-root::after{background:radial-gradient(30% 30% at 82% 70%,#c084fc47,transparent 70%),radial-gradient(34% 34% at 18% 78%,#6d28d958,transparent 70%),radial-gradient(22% 22% at 50% 48%,#8b5cf633,transparent 70%);filter:blur(56px);animation:rh-drift2 31s ease-in-out infinite alternate}
+@keyframes rh-drift{0%{transform:translate3d(-5%,-4%,0) rotate(0deg) scale(1)}50%{transform:translate3d(6%,4%,0) rotate(9deg) scale(1.12)}100%{transform:translate3d(-2%,7%,0) rotate(-7deg) scale(1.04)}}
+@keyframes rh-drift2{0%{transform:translate3d(5%,3%,0) rotate(0deg) scale(1.06)}50%{transform:translate3d(-6%,-5%,0) rotate(-10deg) scale(1)}100%{transform:translate3d(3%,-6%,0) rotate(6deg) scale(1.14)}}
+@media (prefers-reduced-motion:reduce){.rh-root::before,.rh-root::after{animation:none}}
