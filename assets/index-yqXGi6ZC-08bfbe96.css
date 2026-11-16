@@ -7933,3 +7933,18 @@ ul.rb-list{list-style:disc}ol.rb-list{list-style:decimal}
 :host([data-bstyle="safari"]) .chrome-toolbar>.chrome-omnibox.is-focused{background:var(--sf-pill);box-shadow:0 0 0 3px color-mix(in srgb,var(--chrome-blue) 40%,transparent),0 0 0 1px var(--chrome-blue) inset}
 :host([data-bstyle="safari"]) .chrome-omnibox.is-focused input{color:var(--chrome-text);caret-color:var(--chrome-blue);text-align:left}
 :host([data-bstyle="safari"]) .chrome-omnibox input::placeholder{color:var(--sf-ph)}
+
+
+/* ===== Safari tab bar (reference): title-only tabs, white active tab, + on the far right ===== */
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tabstrip{height:38px;padding:5px 12px 5px 6px;gap:2px;align-items:center;background:var(--sf-bar)}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tab{flex:0 1 280px;max-width:280px;min-width:96px;height:28px;padding:0 30px;border-radius:8px;color:var(--sf-ph)}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tab-active{color:var(--chrome-text)}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tab::after{display:none}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tab span.truncate{font-size:13px;font-weight:400;letter-spacing:0}
+:host([data-bstyle="safari"]) .chrome-tab-bg{background:var(--sf-tab-white,var(--safari-tab-active));box-shadow:0 1px 3px rgba(0,0,0,.15),0 0 0 .5px rgba(0,0,0,.06)}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tab:not(.chrome-tab-active):hover .chrome-tab-hover{background:var(--chrome-hover)}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tab[data-home]>div.relative>:first-child:not(.flex-1){display:none}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tab[data-home] span.truncate{font-size:0}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tab[data-home] span.truncate::after{content:"Start Page";font-size:13px}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-newtab{margin:0 0 0 auto;width:28px;height:28px;color:var(--sf-ico)}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-newtab:hover{color:var(--chrome-text)}
