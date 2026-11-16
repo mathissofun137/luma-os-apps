@@ -7869,7 +7869,6 @@ ul.rb-list{list-style:disc}ol.rb-list{list-style:decimal}
 .chrome-sf-only{display:none!important}
 :host([data-bstyle="safari"]) .chrome-sf-only{display:flex!important}
 :host([data-bstyle="safari"]) .chrome-sf-reload,
-:host([data-bstyle="safari"]) .chrome-sf-fs,
 :host([data-bstyle="safari"]) .chrome-star-in,
 :host([data-bstyle="safari"]) .chrome-omnibox::before,
 :host([data-bstyle="safari"]) .chrome-omnibox .chrome-shield{display:none!important}
@@ -7948,3 +7947,9 @@ ul.rb-list{list-style:disc}ol.rb-list{list-style:decimal}
 :host([data-bstyle="safari"]:not([data-vtabs])) .chrome-tab[data-home] span.truncate::after{content:"Start Page";font-size:13px}
 :host([data-bstyle="safari"]:not([data-vtabs])) .chrome-newtab{margin:0 0 0 auto;width:28px;height:28px;color:var(--sf-ico)}
 :host([data-bstyle="safari"]:not([data-vtabs])) .chrome-newtab:hover{color:var(--chrome-text)}
+
+/* no window dots; fullscreen is back */
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-toolbar::before{display:none}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-toolbar{padding-left:12px}
+:host([data-bstyle="safari"]) .chrome-sf-fs{display:flex}
+:host([data-bstyle="safari"]) .chrome-sf-fs svg{width:15px;height:15px}
