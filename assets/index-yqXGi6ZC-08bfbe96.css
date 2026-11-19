@@ -7956,9 +7956,9 @@ ul.rb-list{list-style:disc}ol.rb-list{list-style:decimal}
 /* ===== Safari: match the real browser (lights, page menu, translate/reload, suggestions) ===== */
 .sf-ghost,.sf-oright,.sf-ico-new,.sf-sug-h{display:none}
 :host([data-bstyle="safari"]) .chrome-sf-ext,
-:host([data-bstyle="safari"]) .chrome-sf-fs,
+:host([data-bstyle="safari"]) .chrome-sf-lights,
 :host([data-bstyle="safari"]) .sf-oicon{display:none!important}
-:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-toolbar{padding-left:14px}
+:host([data-bstyle="safari"]:not([data-vtabs])) .chrome-toolbar{padding-left:12px}
 :host([data-bstyle="safari"]) .chrome-sf-lights{align-items:center;gap:8px;margin:0 20px 0 0;flex:none}
 .sf-l{display:block;width:12px;height:12px;padding:0;border:0;border-radius:50%;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.22)}
 .sf-l-r{background:#ff5f57}.sf-l-y{background:#febc2e}.sf-l-g{background:#28c840;cursor:pointer}
